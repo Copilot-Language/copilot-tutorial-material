@@ -1,0 +1,104 @@
+- 3h, split in two 1.5h blocks.
+
+- Topics / script
+
+  Crowd: Model checking / Theorem proving / FM
+  folks, a bit of FP knowledge but not much.
+  They want to know the connection to other
+  formal methods. 
+  - They don't work on mission or specific applications.
+  - No direct access to users (on the most part).
+
+  Possible outcomes:
+  - Small experiments in their labs with their students.
+    - Example that gets everything running quickly and is
+      intuitive.
+  - Contributions to Copilot.
+    - Explore logics.
+    - Write their own combinator or library.
+  - Connections to other FM techniques and tools?
+    - Copilot-theorem
+      - Examples that cover theorem.
+    - Copilot-verifier
+      - Example with the verifier.
+  - Collaborations.
+    - Past things we explored, and mistakes we made.
+    - Open problems:
+      - Rust and other backends.
+      - Connections to FM tools.
+      - New logics.
+      - Efficiency and performance (including FPGA).
+        - We want users from outside.
+      - Experiments (ROS, cFS, F'); Ogma.
+      - Clocks.
+      - Types.
+      - User interface and simulation.
+
+1) Session 1
+   First 45'
+   - Intro
+   - Basis and purpose of RV
+   - What Copilot is, and where Copilot is at
+
+import Language.Copilot
+
+main :: IO ()
+main = do
+  interpret 10 spec
+
+spec :: Spec
+spec =
+  trigger "sample1" true []
+
+Run it and see the results.
+
+
+
+    - Example that gets everything running quickly and is
+      intuitive.
+    - High level view of what we want to do
+    - Write spec top-down.
+      - Use interpret
+      - Monitor
+        true
+        false
+        add arguments
+      - Streams of data
+
+myTrue :: Stream Bool
+myTrue = true
+
+myFalse :: Stream Bool
+myFalse = true ==> false
+
+myFalse :: Stream Int32
+myFalse = 3 > 2
+
+myFalse :: Stream Int32
+myFalse = [True] ++ (3 > 2)
+
+alternate :: Stream Int32
+alternate = [True] ++ not alternate
+
+monitor :: Spec
+monitor = do
+  trigger "recover" myFalse [ ]
+  trigger "recover" myFalse [ arg myFalse ]
+
+      - Introduce externs
+      - End with example of altitude meter.
+
+      Second 45'
+      - Compile to C.
+      - Provide sensor data from C.
+      - Handle error from C.
+
+  Complement to existing FM, or gateway to FMs.
+  We provide libraries.
+
+- Setup / IT
+  - Docker?
+- Who presents what.
+
+- https://github.com/fdedden/bobkonf-2024-copilot-tutorial
+- https://github.com/fdedden/bobkonf-2024-copilot-tutorial-slides
