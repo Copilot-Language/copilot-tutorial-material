@@ -13,19 +13,22 @@
   - Small experiments in their labs with their students.
     - Example that gets everything running quickly and is
       intuitive.
-  - Contributions to Copilot.
+  - Contributions to Copilot (62 minutes).
     - Explore logics.
     - Write their own combinator or library.
   - Connections to other FM techniques and tools?
-    - Copilot-theorem
+    - Copilot-theorem (about 13 minutes)
       - Examples that cover theorem.
-    - Copilot-verifier
+    - Copilot-verifier (about 5 minutes)
       - Example with the verifier.
-  - Collaborations.
+  - Collaborations (about 10 minutes).
     - Past things we explored, and mistakes we made.
     - Open problems:
       - Rust and other backends.
       - Connections to FM tools.
+          spec = do
+            trigger "f1" (x < 10) []
+            trigger "f2" (x >= 10) []
       - New logics.
       - Efficiency and performance (including FPGA).
         - We want users from outside.
