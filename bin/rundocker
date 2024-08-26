@@ -10,6 +10,6 @@ COMMAND=$@
 
 docker run \
   --mount type=bind,source="$(pwd)"/exercises/,target=/exercises \
-  -t \
+  -it \
   ${IMAGE} \
   ${COMMAND}
