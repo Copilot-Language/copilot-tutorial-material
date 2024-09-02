@@ -19,6 +19,12 @@ mySth2 = [False] ++ (not myTrue || myTrue)
 
 mySth3 :: Stream Bool
 mySth3 = [False] ++ not mySth3
+
+--  Exercise
+-- [True, False]
+
+-- Exercise
+-- [False, False, True]
                                                                                  
 spec :: Spec                                                                     
 spec = do
