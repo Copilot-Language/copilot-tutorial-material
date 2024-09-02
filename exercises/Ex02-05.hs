@@ -1,27 +1,25 @@
 {-# LANGUAGE RebindableSyntax #-}
-import Copilot.Compile.C99
 import Language.Copilot
 
 -- Part 2, exercise 5 (15 minutes).
 --
 -- The specification using previous works for one sample, but we may want to
 -- check multiple samples. Then it becomes cumbersome.
--- 
+--
 -- We want to generalize checking a property for the recent past.
 --
 -- We call that new *temporal* operator alwaysBeen.
-                                                                                 
+
 main :: IO ()
 main = do
-  spec' <- reify spec
-  compile "sample1" spec'
+  interpret 10 spec
 
 spec :: Spec
 spec = do
   trigger "sample1" myProp [arg sensorData]
 
 sensorData :: Stream Float
-sensorData = extern "sensor" (Just [1, 2, 3, 4, 5, 6, 7])
+sensorData = extern "sensor" (Just [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])
 
 myProp :: Stream Bool
 myProp = underThreshold && previous underThreshold
@@ -58,7 +56,7 @@ alwaysBeen = _
 --   if ?                         -- stop condition
 --     then ?                     -- base case
 --     else ? && (alwaysBeen ? ?) -- recursive case
--- 
+--
 -- See below for possible solutions.
 
 
@@ -75,11 +73,11 @@ alwaysBeen = _
 
 
 -- Posible solutions
--- 
+--
 -- alwaysBeen :: Word64 -> Stream Bool -> Stream Bool
 -- alwaysBeen 0 s = true
 -- alwaysBeen n s = s && (alwaysBeen (n - 1) [True] ++ s)
--- 
+--
 -- alwaysBeen :: Stream Word64 -> Stream Bool -> Stream Bool
 -- alwaysBeen n s =
 --   if n == 0
