@@ -1,8 +1,8 @@
 {-# LANGUAGE RebindableSyntax #-}
-import Language.Copilot                                                          
-                                                                                 
-main :: IO ()                                                                    
-main = do                                                                        
+import Language.Copilot
+
+main :: IO ()
+main = do
   interpret 5 spec
 
 sensorData :: Stream Float
@@ -11,7 +11,7 @@ sensorData = extern "sensor" (Just [1, 2, 3, 4, 5, 6, 7])
 myProp :: Stream Bool
 myProp = sensorData > 2
 
-spec :: Spec                                                                     
+spec :: Spec
 spec = do
   trigger "sample1" myProp [arg sensorData]
 

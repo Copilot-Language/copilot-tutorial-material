@@ -1,9 +1,9 @@
 {-# LANGUAGE RebindableSyntax #-}
-import Language.Copilot                                                          
+import Language.Copilot
 import Copilot.Compile.C99
-                                                                                 
-main :: IO ()                                                                    
-main = do                                                                        
+
+main :: IO ()
+main = do
   spec' <- reify spec
   compile "sample1" spec'
 
@@ -13,7 +13,7 @@ sensorData = extern "sensor" (Just [1, 2, 3, 4, 5, 6, 7])
 myProp :: Stream Bool
 myProp = sensorData > 2
 
-spec :: Spec                                                                     
+spec :: Spec
 spec = do
   trigger "sample1" myProp [arg sensorData]
 

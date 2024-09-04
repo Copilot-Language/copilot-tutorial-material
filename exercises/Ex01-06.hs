@@ -1,9 +1,9 @@
 {-# LANGUAGE RebindableSyntax #-}
-import Language.Copilot                                                          
-                                                                                 
-main :: IO ()                                                                    
-main = do                                                                        
-  interpret 5 spec                                                              
+import Language.Copilot
+
+main :: IO ()
+main = do
+  interpret 5 spec
 
 myTrue :: Stream Bool
 myTrue = true
@@ -14,17 +14,23 @@ myFalse = not myTrue
 mySth :: Stream Bool
 mySth = not myTrue || myTrue
 
+-- ++ ('append') delays a stream by a list of values.
+-- (++) :: Typed a => [a] -> Stream a -> Stream a
 mySth2 :: Stream Bool
 mySth2 = [False] ++ (not myTrue || myTrue)
 
---  Exercise
--- [True, False]
+--  Exercise ??
+-- Define a stream that starts with True and False, followed by
+-- True ad infinitum.
+-- <True, False, True, True, ...>
+ex1 :: Stream Bool
+ex1 = false -- 'false' is a placeholder.
 
--- Exercise
--- [False, False, True]
-                                                                                 
-spec :: Spec                                                                     
+spec :: Spec
 spec = do
-  trigger "sample1" myTrue [arg myTrue, arg false, arg mySth2] 
-  trigger "sample2" myFalse [] 
-  trigger "sample3" mySth [] 
+  observer "mySth"  mySth  -- 'observer' just prints the value.
+  observer "mySth2" mySth2
+
+  observer "ex1" ex1
+
+  trigger "sample1" myTrue [arg mySth, arg mySth2]

@@ -1,9 +1,9 @@
 {-# LANGUAGE RebindableSyntax #-}
-import Language.Copilot                                                          
-                                                                                 
-main :: IO ()                                                                    
-main = do                                                                        
-  interpret 5 spec                                                              
+import Language.Copilot
+
+main :: IO ()
+main = do
+  interpret 5 spec
 
 myTrue :: Stream Bool
 myTrue = true
@@ -26,10 +26,10 @@ mySth3 = [False] ++ not mySth3
 
 -- Exercise
 [False, False, True]
-                                                                                 
-spec :: Spec                                                                     
+
+spec :: Spec
 spec = do
-  trigger "sample1" myTrue [arg myTrue, arg false, arg mySth2, arg mySth3] 
-  trigger "sample2" false [] 
-  trigger "sample3" myFalse [] 
-  trigger "sample4" mySth [] 
+  trigger "sample1" myTrue [arg myTrue, arg false, arg mySth2, arg mySth3]
+  trigger "sample2" false []
+  trigger "sample3" myFalse []
+  trigger "sample4" mySth []

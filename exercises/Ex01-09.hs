@@ -1,9 +1,9 @@
 {-# LANGUAGE RebindableSyntax #-}
-import Language.Copilot                                                          
-                                                                                 
-main :: IO ()                                                                    
-main = do                                                                        
-  interpret 5 spec                                                              
+import Language.Copilot
+
+main :: IO ()
+main = do
+  interpret 5 spec
 
 myOne :: Stream Int32
 myOne = 1
@@ -21,6 +21,6 @@ myCmp = myTwo > 2
 -- Create a counter
 -- Use counter in comparison
 
-spec :: Spec                                                                     
+spec :: Spec
 spec = do
-  trigger "sample1" myCmp [arg myOne] 
+  trigger "sample1" myCmp [arg myOne]
