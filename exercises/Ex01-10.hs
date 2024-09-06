@@ -2,8 +2,7 @@
 import Language.Copilot
 
 main :: IO ()
-main = do
-  interpret 5 spec
+main = interpret 10 spec
 
 sensorData :: Stream Float
 sensorData = extern "sensor" (Just [1, 2, 3, 4, 5, 6, 7])

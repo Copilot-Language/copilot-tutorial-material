@@ -1,36 +1,34 @@
 {-# LANGUAGE RebindableSyntax #-}
 import Language.Copilot
 
+-- 7 min
+-- Shows delaying of streams.
+
 main :: IO ()
-main = do
-  interpret 5 spec
-
-myTrue :: Stream Bool
-myTrue = true
-
-myFalse :: Stream Bool
-myFalse = not myTrue
+main = interpret 10 spec
 
 mySth :: Stream Bool
-mySth = not myTrue || myTrue
+mySth = not true || true
 
 -- ++ ('append') delays a stream by a list of values.
 -- (++) :: Typed a => [a] -> Stream a -> Stream a
 mySth2 :: Stream Bool
 mySth2 = [False] ++ (not myTrue || myTrue)
 
---  Exercise ??
+-- Exercise
+-- Define a stream that has a constant value of 12, using the ++ operator.
+twelve :: Stream Int32
+twelve = 0
+
+-- Exercise
 -- Define a stream that starts with True and False, followed by
 -- True ad infinitum.
 -- <True, False, True, True, ...>
-ex1 :: Stream Bool
-ex1 = false -- 'false' is a placeholder.
+tft :: Stream Bool
+tft = false
 
 spec :: Spec
 spec = do
-  observer "mySth"  mySth  -- 'observer' just prints the value.
-  observer "mySth2" mySth2
+  observer "twelve" twelve -- 'observer' just prints the value at every step.
 
-  observer "ex1" ex1
-
-  trigger "sample1" myTrue [arg mySth, arg mySth2]
+  trigger "sample1" trueFalseTrue [arg mySth, arg mySth2]

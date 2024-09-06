@@ -1,10 +1,11 @@
--- {-# LANGUAGE RebindableSyntax #-}
+{-# LANGUAGE RebindableSyntax #-}
 import Language.Copilot
 
+-- 2 minutes
+-- Shows passing arguments to a trigger.
+
 main :: IO ()
-main = do
-  interpret 5 spec
+main = interpret 10 spec
 
 spec :: Spec
-spec = do
-  trigger "sample1" true [arg true, arg false]
+spec = trigger "sample1" true [arg true, arg false]

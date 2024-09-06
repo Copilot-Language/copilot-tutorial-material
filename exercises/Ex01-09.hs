@@ -2,8 +2,7 @@
 import Language.Copilot
 
 main :: IO ()
-main = do
-  interpret 5 spec
+main = interpret 10 spec
 
 myOne :: Stream Int32
 myOne = 1

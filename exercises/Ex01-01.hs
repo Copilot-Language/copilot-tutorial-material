@@ -1,13 +1,12 @@
--- Example 1:
+{-# LANGUAGE RebindableSyntax #-}
 import Language.Copilot
 
+-- 5 minutes
+-- Shows basic structure of a Copilot program.
+
 main :: IO ()
-main = do
-  interpret 10 spec
-  -- this could be 5
+main = interpret 10 spec
 
 spec :: Spec
-spec =
-  trigger "sample1" true []
-  -- the string name is customizable
-  -- meaning relevant later
+spec = trigger "sample1" true []
+  -- The name is customizable.

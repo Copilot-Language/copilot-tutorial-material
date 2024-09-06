@@ -1,9 +1,11 @@
 {-# LANGUAGE RebindableSyntax #-}
 import Language.Copilot
 
+-- 5 min
+-- Show recursion of streams.
+
 main :: IO ()
-main = do
-  interpret 15 spec
+main = interpret 15 spec
 
 myTrue :: Stream Bool
 myTrue = true
