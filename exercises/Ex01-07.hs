@@ -1,39 +1,31 @@
 {-# LANGUAGE RebindableSyntax #-}
 import Language.Copilot
 
--- 5 min
+-- 10 min
 -- Show recursion of streams.
 
 main :: IO ()
 main = interpret 15 spec
 
-myTrue :: Stream Bool
-myTrue = true
-
+-- Definitions can be recursive.
 myFalse :: Stream Bool
-myFalse = not myTrue
+myFalse = [False] ++ myFalse
 
-mySth :: Stream Bool
-mySth = not myTrue || myTrue
-
-mySth2 :: Stream Bool
-mySth2 = [False] ++ (not myTrue || myTrue)
-
--- Definitions can be recursive as well!
-mySth3 :: Stream Bool
-mySth3 = [False] ++ mySth3
-
--- Exercise ??
+-- Exercise
 -- Define a stream that alternates between True and False, e.g.:
 -- <True, False, True, False, True, ...>
 alternating :: Stream Bool
-alternating = false -- remove the placeholder!
+alternating = [True] ++ not alternating -- remove the placeholder!
+
+-- Exercise
+-- Define a stream that counters from 0 and up, e.g.;
+-- <0, 1, 2, 3, 4, 5, ...>
+counter :: Stream Int64
+counter = 0
 
 spec :: Spec
 spec = do
-  observer "mySth3" mySth3
   observer "alternating" alternating
+  observer "counter" counter
 
-  trigger "sample1" myTrue [arg myTrue, arg false, arg mySth2, arg mySth3]
-  -- trigger "sample2" myFalse []
-  -- trigger "sample3" mySth []
+  trigger "sample1" alternating [arg counter]

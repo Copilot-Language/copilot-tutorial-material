@@ -1,7 +1,7 @@
 {-# LANGUAGE RebindableSyntax #-}
 import Language.Copilot
 
--- 7 min
+-- 10 min
 -- Shows delaying of streams.
 
 main :: IO ()
