@@ -24,8 +24,8 @@ spec = do
   prop "Example 3" (forAll a)
 
   -- An inductively defined "a or not a" proposition.
-  let a = [False] ++ b
-      b = [True] ++ a
+  let a = [False] ++ b     -- False, True, False, True,...
+      b = [True] ++ a      -- True, False, True, False,...
   prop "Example 4" (forAll (a || b))
 
   -- A version of "a or not a" proposition which does not require any sort of
@@ -40,10 +40,15 @@ spec = do
   prop "Example 6" (forAll (a || b))
 
   -- Exercises:
-  --   How would you check if the monitor is vacuously true (always fires).
-  --   How would you check if the monitor is vacuously false (never fires).
-  --   How would you check if, given two monitors are exclusive (they can't
-  --   both fire at the same time)?
+  --
+  --   How would you check if the monitor is always true (always fires).
+  --      That monitor would then be useless!!
+  --
+  --   How would you check if the monitor is always false (never fires).
+  --      That monitor would then be useless!!
+  --
+  --   How would you check if, given two monitors, they are exclusive (they
+  --   can't both fire at the same time)?
   --   How would you check if, given two properties, one of them will always
   --   fire.
 
@@ -101,10 +106,12 @@ main = do
   -- Use Z3 to prove the properties.
   results <- prove Z3 spec'
 
+  let printResult (propName, propRes) = do
+        putStr $ propName <> ": "
+        case propRes of
+          Valid   -> putStrLn "valid"
+          Invalid -> putStrLn "invalid"
+          Unknown -> putStrLn "unknown"
+
   -- Print the results.
-  forM_ results $ \(propName, propRes) -> do
-    putStr $ propName <> ": "
-    case propRes of
-      Valid   -> putStrLn "valid"
-      Invalid -> putStrLn "invalid"
-      Unknown -> putStrLn "unknown"
+  forM_ results printResult
