@@ -10,8 +10,8 @@ main = interpret 10 spec
 mySth :: Stream Bool
 mySth = not true || true
 
--- ++ ('append') delays a stream by a list of values.
--- (++) :: Typed a => [a] -> Stream a -> Stream a
+--   ++ ('append') delays a stream by a list of values.
+--   ++ :: [a] -> Stream a -> Stream a
 mySth2 :: Stream Bool
 mySth2 = [False] ++ (not true || true)
 

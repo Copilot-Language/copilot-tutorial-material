@@ -20,7 +20,7 @@ myTrue = true
 myFalse :: Stream Bool
 myFalse = not myTrue
 
--- (||) :: Stream Bool -> Stream Bool -> Stream Bool
+--    || :: Stream Bool -> Stream Bool -> Stream Bool
 mySth :: Stream Bool
 mySth = not myTrue || myTrue
 

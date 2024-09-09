@@ -15,13 +15,13 @@ myFalse = [False] ++ myFalse
 -- Define a stream that alternates between True and False, e.g.:
 -- <True, False, True, False, True, ...>
 alternating :: Stream Bool
-alternating = [True] ++ not alternating -- remove the placeholder!
+alternating = false -- remove the placeholder!
 
 -- Exercise
 -- Define a stream that counters from 0 and up, e.g.;
 -- <0, 1, 2, 3, 4, 5, ...>
 counter :: Stream Int64
-counter = 0
+counter = 0 -- remove the placeholder!
 
 spec :: Spec
 spec = do

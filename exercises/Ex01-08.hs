@@ -8,7 +8,7 @@ main :: IO ()
 main = interpret 10 spec
 
 sensorData :: Stream Float
-sensorData = extern "sensor" (Just [1, 2, 3, 4, 5, 6, 7])
+sensorData = extern "sensor" (Just [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
 
 -- A property that we use to fire the trigger.
 myProp :: Stream Bool

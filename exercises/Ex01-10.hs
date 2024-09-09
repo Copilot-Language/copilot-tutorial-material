@@ -22,9 +22,9 @@ myPlus l r = l + r
 
 
 -- Exercise
--- Define a function that calculates the square root of its input.
-mySqrt :: Stream Int32 -> Stream Int32
-mySqrt n = 0
+-- Define a function that calculates the square of its input.
+mySquare :: Stream Int32 -> Stream Int32
+mySquare n = 0
 
 
 -- Exercise

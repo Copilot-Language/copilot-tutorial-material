@@ -21,6 +21,6 @@ myFalse = not myTrue
 one :: Stream Int32
 one = 1
 
--- (-) :: Stream Int32 -> Stream Int32
+--    - :: Stream Int32 -> Stream Int32
 negative_one :: Stream Int32
 negative_one = - one
