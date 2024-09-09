@@ -28,9 +28,9 @@ myProp = alwaysBeen 1 underThreshold -- Check for 1 sample ago and now
 underThreshold :: Stream Bool
 underThreshold = s < threshold
 
-previous :: Stream Bool -> Stream Bool
-previous s = [False] ++ s
+previousT :: Stream Bool -> Stream Bool
+previousT s = [True] ++ s
 
 alwaysBeen :: Int -> Stream Bool -> Stream Bool
 alwaysBeen 0 s = s
-alwaysBeen n s = s && (alwaysBeen (n - 1) (previous s))
+alwaysBeen n s = s && (alwaysBeen (n - 1) (previousT s))

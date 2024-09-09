@@ -83,7 +83,7 @@ alwaysBeen n s = s && (alwaysBeen (n - 1) ([True] ++ s))
 -- alwaysBeen :: Stream Word64 -> Stream Bool -> Stream Bool
 -- alwaysBeen n s =
 --   if n == 0
---     then true
+--     then s
 --     else (s && (alwaysBeen (n - 1) [True] ++ s))
 
 -- Re-write (4) using alwaysBeen.
