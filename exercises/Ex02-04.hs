@@ -32,5 +32,5 @@ underThresholdBefore :: Stream Bool
 underThresholdBefore = [False] ++ underThreshold -- Use previous here
 
 -- Define previous
-previous :: Stream Bool -> Stream Bool
-previous = _
+previous :: Bool -> Stream Bool -> Stream Bool
+previous def s = [def] ++ s

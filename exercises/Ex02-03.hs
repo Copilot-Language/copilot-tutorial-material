@@ -24,7 +24,7 @@ sensorData :: Stream Float
 sensorData = extern "sensor" (Just [5, 25, 10, 5, 15, 6, 12, 12, 12, 6, 6, 6, 13, 14, 15])
 
 myProp :: Stream Bool
-myProp = _
+myProp = underThreshold && underThresholdBefore
 
 underThreshold :: Stream Bool
 underThreshold = sensorData < threshold

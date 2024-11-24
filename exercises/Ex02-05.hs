@@ -1,5 +1,6 @@
+{-# LANGUAGE RebindableSyntax #-}
 import Language.Copilot hiding (alwaysBeen, previous)
-import Prelude          hiding (not, (&&), (++), (<))
+import Prelude          hiding (not, (&&), (++), (<), (==))
 
 -- Part 2, exercise 5 (15 minutes).
 --
@@ -17,6 +18,10 @@ main = do
 spec :: Spec
 spec = do
   trigger "sample1" myProp [ arg sensorData ]
+  observer "(alwaysBeen s1 s2)" (alwaysBeen s1 s2) 
+
+s1 = constW64 1
+s2 = true
 
 sensorData :: Stream Float
 sensorData = extern "sensor" (Just [5, 25, 10, 5, 15, 6, 12, 12, 12, 6, 6, 6, 13, 14, 15])
@@ -39,8 +44,6 @@ previous s = [False] ++ s
 -- alwaysBeen = _
 
 -- See below for clues.
-
-
 
 
 
@@ -76,15 +79,15 @@ previous s = [False] ++ s
 
 
 -- Posible solutions
-alwaysBeen :: Int -> Stream Bool -> Stream Bool
-alwaysBeen 0 s = s
-alwaysBeen n s = s && (alwaysBeen (n - 1) ([True] ++ s))
+-- alwaysBeen :: Int -> Stream Bool -> Stream Bool
+-- alwaysBeen 0 s = s
+-- alwaysBeen n s = s && (alwaysBeen (n - 1) ([True] ++ s))
 
--- alwaysBeen :: Stream Word64 -> Stream Bool -> Stream Bool
--- alwaysBeen n s =
---   if n == 0
---     then s
---     else (s && (alwaysBeen (n - 1) [True] ++ s))
+alwaysBeen :: Stream Word64 -> Stream Bool -> Stream Bool
+alwaysBeen n s =
+  if n == 0
+    then s
+    else (s && (alwaysBeen (n - 1) ([True] ++ s)))
 
 -- Re-write (4) using alwaysBeen.
 
